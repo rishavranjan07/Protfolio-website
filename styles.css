@@ -2147,3 +2147,61 @@ body.light-theme .cert-link:hover {
   box-shadow: 0 6px 18px rgba(15, 76, 129, 0.15);
   color: #0f4c81;
 }
+
+/* ── Contact Form Feedback States ───────────────────── */
+.form-note {
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: var(--muted);
+}
+
+.form-note--success {
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #34d399;
+}
+
+.form-note--error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+.form-note--warning {
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  color: #f5a623;
+}
+
+.form-note--info {
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: #00d4ff;
+}
+
+body.light-theme .form-note--success {
+  background: rgba(22, 163, 74, 0.08);
+  border-color: rgba(22, 163, 74, 0.3);
+  color: #16a34a;
+}
+
+body.light-theme .form-note--error {
+  background: rgba(220, 38, 38, 0.07);
+  border-color: rgba(220, 38, 38, 0.3);
+  color: #dc2626;
+}
+
+body.light-theme .form-note--warning {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.3);
+  color: #d97706;
+}
+
+body.light-theme .form-note--info {
+  background: rgba(15, 76, 129, 0.07);
+  border-color: rgba(15, 76, 129, 0.25);
+  color: #0f4c81;
+}

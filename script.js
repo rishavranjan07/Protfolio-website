@@ -83,15 +83,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ── Contact Form ────────────────────────────────────
+  // ── Formspree Contact Form ──────────────────────────
   const contactForm = document.getElementById("contact-form");
+  const formNote    = document.getElementById("form-note");
+  const submitBtn   = contactForm ? contactForm.querySelector("button[type=submit]") : null;
+
+  function showNote(type, msg) {
+    if (!formNote) return;
+    formNote.innerHTML = msg;
+    formNote.className = "form-note form-note--" + type;
+  }
+
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      alert(
-        "Thanks for reaching out! This is a demo form — connect it to a backend or service to receive messages."
-      );
-      contactForm.reset();
+
+      // Loading state
+      submitBtn.disabled    = true;
+      submitBtn.textContent = "Sending...";
+      showNote("info", "&#8987; Sending your message...");
+
+      const formData = new FormData(contactForm);
+
+      fetch("https://formspree.io/f/xqeydkkb", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          showNote("success", "&#10003; Message sent successfully! I will get back to you soon.");
+          contactForm.reset();
+        } else {
+          return response.json().then(function (data) {
+            throw new Error(data.errors ? data.errors.map(function(e){ return e.message; }).join(", ") : "Server error");
+          });
+        }
+      })
+      .catch(function (err) {
+        console.error("Formspree error:", err);
+        showNote("error", "&#10007; Failed to send. Please try again or email directly.");
+      })
+      .finally(function () {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = "Send Message";
+      });
     });
   }
 
