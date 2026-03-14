@@ -1,5 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  // ── Email Builder (bypasses Cloudflare obfuscation) ──
+  const eParts = ["rishavranjan0716", "gmail", "com"];
+  const eAddr  = eParts[0] + "@" + eParts[1] + "." + eParts[2];
+  const eHref  = "mailto:" + eAddr;
+
+  var heroEmailLink = document.getElementById("hero-email-link");
+  if (heroEmailLink) {
+    heroEmailLink.href  = eHref;
+    heroEmailLink.title = eAddr;
+  }
+
+  document.querySelectorAll("#contact-email-link").forEach(function(el) {
+    el.href        = eHref;
+    el.textContent = eAddr;
+  });
+
+  var noteEmail = document.getElementById("note-email");
+  if (noteEmail) {
+    var a = document.createElement("a");
+    a.href        = eHref;
+    a.textContent = eAddr;
+    a.style.color = "inherit";
+    noteEmail.appendChild(a);
+  }
+
   // ── Year ────────────────────────────────────────────
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
@@ -357,3 +382,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   staggerParents.forEach((el) => observer.observe(el));
 })();
+
