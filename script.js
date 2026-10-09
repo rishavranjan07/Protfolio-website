@@ -31,6 +31,98 @@ document.addEventListener("DOMContentLoaded", function () {
     yearSpan.textContent = new Date().getFullYear();
   }
 
+  // ── Preloader Animation ─────────────────────────────
+  const preloader = document.getElementById("preloader");
+  const fill = document.getElementById("preloader-fill");
+  const count = document.getElementById("preloader-count");
+  let typewriterStarted = false;
+
+  function triggerTypewriter() {
+    if (typewriterStarted) return;
+    typewriterStarted = true;
+    if (window.startTypewriter) {
+      window.startTypewriter();
+    }
+  }
+
+  if (preloader) {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced) {
+      preloader.classList.add("fade-out");
+      document.body.classList.add("loaded");
+      preloader.style.display = "none";
+      triggerTypewriter();
+    } else {
+      let currentProgress = 0;
+      let isWindowLoaded = false;
+      let isCompleted = false;
+
+      function completePreloader() {
+        if (isCompleted) return;
+        isCompleted = true;
+        if (fill) fill.style.width = "100%";
+        if (count) count.textContent = "100%";
+
+        setTimeout(function () {
+          preloader.classList.add("fade-out");
+          document.body.classList.add("loaded");
+
+          // Start typewriter right as hero reveals
+          setTimeout(triggerTypewriter, 250);
+
+          setTimeout(function () {
+            preloader.style.display = "none";
+          }, 600);
+        }, 180);
+      }
+
+      const startTime = performance.now();
+      const targetDuration = 800; // Snappy target duration
+
+      function updateLoader(now) {
+        if (isCompleted) return;
+        const elapsed = now - startTime;
+        let target = Math.min((elapsed / targetDuration) * 92, 92);
+
+        if (isWindowLoaded) {
+          target = 100;
+        }
+
+        currentProgress += (target - currentProgress) * 0.22;
+        if (currentProgress >= 99 && isWindowLoaded) {
+          completePreloader();
+          return;
+        }
+
+        const displayVal = Math.min(Math.floor(currentProgress), 100);
+        if (fill) fill.style.width = displayVal + "%";
+        if (count) count.textContent = displayVal + "%";
+
+        requestAnimationFrame(updateLoader);
+      }
+
+      requestAnimationFrame(updateLoader);
+
+      if (document.readyState === "complete") {
+        isWindowLoaded = true;
+      } else {
+        window.addEventListener("load", function () {
+          isWindowLoaded = true;
+        });
+      }
+
+      // Safety timeout: dismiss after 1.4s max
+      setTimeout(function () {
+        isWindowLoaded = true;
+        completePreloader();
+      }, 1400);
+    }
+  } else {
+    document.body.classList.add("loaded");
+    triggerTypewriter();
+  }
+
   // ── Typed Hero Text ─────────────────────────────────
   const typedTarget = document.getElementById("typed-roles");
   if (typedTarget) {
@@ -38,14 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "a Full-Stack Developer",
       "a Machine Learning Enthusiast",
       "a Problem Solver",
-      "a Java & Python Developer",
     ];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    const typeSpeed = 120;
-    const deleteSpeed = 60;
-    const pauseBetweenRoles = 1400;
+    const typeSpeed = 110;
+    const deleteSpeed = 50;
+    const pauseBetweenRoles = 1500;
 
     function typeLoop() {
       const current = roles[roleIndex];
@@ -57,17 +148,27 @@ document.addEventListener("DOMContentLoaded", function () {
           setTimeout(typeLoop, pauseBetweenRoles);
           return;
         }
+        setTimeout(typeLoop, typeSpeed);
       } else {
         typedTarget.textContent = current.slice(0, charIndex - 1);
         charIndex--;
         if (charIndex === 0) {
           isDeleting = false;
           roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeLoop, 450); // Pause briefly while blank
+          return;
         }
+        setTimeout(typeLoop, deleteSpeed);
       }
-      setTimeout(typeLoop, isDeleting ? deleteSpeed : typeSpeed);
     }
-    typeLoop();
+
+    window.startTypewriter = function () {
+      typeLoop();
+    };
+
+    if (!preloader || document.body.classList.contains("loaded")) {
+      triggerTypewriter();
+    }
   }
 
   // ── Theme Toggle ────────────────────────────────────
@@ -199,6 +300,53 @@ document.addEventListener("DOMContentLoaded", function () {
         hamburger.focus();
       }
     });
+  }
+
+  // ── Card Spotlight Hover Effect ─────────────────────
+  const spotlightCards = document.querySelectorAll(
+    ".card, .skill-card, .cert-item, .stat-card"
+  );
+  spotlightCards.forEach(function (card) {
+    card.addEventListener("mousemove", function (e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", x + "px");
+      card.style.setProperty("--mouse-y", y + "px");
+    });
+  });
+
+  // ── Scroll to Top (Floating Button & RR Logo) ────────
+  const scrollTopBtn = document.getElementById("scroll-to-top");
+  const navLogo = document.getElementById("nav-logo") || document.querySelector(".logo");
+
+  function scrollToTopSmooth(e) {
+    if (e) e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    if (navLogo) {
+      navLogo.classList.remove("logo-active-pulse");
+      void navLogo.offsetWidth; // force CSS reflow for re-triggering animation
+      navLogo.classList.add("logo-active-pulse");
+    }
+  }
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener("click", scrollToTopSmooth);
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("visible");
+      } else {
+        scrollTopBtn.classList.remove("visible");
+      }
+    }, { passive: true });
+  }
+
+  if (navLogo) {
+    navLogo.addEventListener("click", scrollToTopSmooth);
   }
 
 }); // end DOMContentLoaded

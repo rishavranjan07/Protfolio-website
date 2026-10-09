@@ -23,21 +23,54 @@
         }
       })();
     </script>
+    <noscript>
+      <style>
+        #preloader { display: none !important; }
+        .navbar, .hero-location, .hero h1, .hero-subtitle, .hero-summary, .hero-cta, .hero-links, .hero-socials, .hero-card {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
+
+    <!-- INITIAL PRELOADER -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+      <div class="preloader-inner">
+        <div class="preloader-brand">
+          <div class="preloader-ring-outer"></div>
+          <div class="preloader-ring"></div>
+          <div class="preloader-logo">RR</div>
+        </div>
+        <div class="preloader-meta">
+          <div class="preloader-title">Rishav Ranjan</div>
+          <div class="preloader-subtitle">Loading Portfolio Experience</div>
+        </div>
+        <div class="preloader-progress-wrap">
+          <div class="preloader-track">
+            <div id="preloader-fill" class="preloader-fill"></div>
+          </div>
+          <div class="preloader-info">
+            <span class="preloader-status-text">INITIALIZING</span>
+            <span id="preloader-count" class="preloader-count">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <canvas id="bg-canvas"></canvas>
 
     <!-- NAVBAR -->
     <header class="navbar">
       <div class="container nav-content">
-        <div class="logo">RR</div>
+        <a href="#home" class="logo" id="nav-logo" aria-label="Back to top" title="Back to top">RR</a>
         <nav>
           <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
+            <li><a href="#experience">Internships</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#achievements">Achievements</a></li>
             <li><a href="#certifications">Certifications</a></li>
@@ -59,7 +92,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
+        <li><a href="#experience">Internships</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#certifications">Certifications</a></li>
@@ -76,7 +109,10 @@
             <p class="hero-location">&#128205; Madhupur, India</p>
             <h1>Hi, I'm <span>Rishav Ranjan</span></h1>
             <p class="hero-subtitle">
-              I am&nbsp;<span id="typed-roles" class="hero-typed-text"></span><span class="typed-cursor">|</span>
+              <span>I am&nbsp;</span>
+              <span class="hero-typed-wrapper">
+                <span id="typed-roles" class="hero-typed-text"></span><span class="typed-cursor" aria-hidden="true"></span>
+              </span>
             </p>
             <p class="hero-summary">
               Computer Science undergraduate focused on Data Structures &amp;
@@ -163,6 +199,15 @@
           <h2>Education</h2>
           <div class="timeline">
             <div class="timeline-item">
+              <span class="timeline-date">Apr 2020<br>&ndash; May 2021</span>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3>Mothers International Academy</h3>
+                </div>
+                <p class="timeline-role">Matriculation (10th)</p>
+              </div>
+            </div>
+            <div class="timeline-item">
               <span class="timeline-date">Jun 2021<br>&ndash; Jul 2023</span>
               <div class="timeline-content">
                 <div class="timeline-header">
@@ -213,10 +258,10 @@
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
+      <!-- INTERNSHIPS -->
       <section id="experience" class="section alt">
         <div class="container">
-          <h2>Work Experience</h2>
+          <h2>Internships</h2>
           <div class="cards-grid reveal-stagger">
 
             <article class="card reveal">
@@ -296,13 +341,64 @@
         <div class="container">
           <h2>Projects</h2>
           <div class="cards-grid reveal-stagger">
-            <article class="card reveal">
+            <article class="card project-card reveal">
+              <a href="https://smart-notes-manager-frontend.vercel.app/" target="_blank" rel="noreferrer" class="project-img-wrap" aria-label="Smart Note Manager Live Demo">
+                <img src="assets/project-smart-notes.jpg" alt="Smart Note Manager preview" class="project-img" loading="lazy" />
+                <span class="project-badge-overlay">Live Preview</span>
+              </a>
+              <header class="card-header">
+                <div>
+                  <h3>Smart Note Manager</h3>
+                  <p class="card-subtitle">Full-Stack AI Application</p>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <a href="https://github.com/rishavranjan07/Smart-notes-manager" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
+                  <a href="https://smart-notes-manager-frontend.vercel.app/" target="_blank" rel="noreferrer" class="badge-link">Live &#8599;</a>
+                </div>
+              </header>
+              <p class="card-body">Built a full-stack note application with categorized folders (Study, Personal, Work, Fun) and integrated AI document utilities.</p>
+              <ul class="card-list">
+                <li>Added <strong>AI-powered summarization</strong> and PDF processing for quick revision.</li>
+                <li>Used <strong>MongoDB</strong> for secure storage with custom folder categorization.</li>
+                <li>Implemented seamless <strong>dark/light mode</strong> and a responsive UI.</li>
+              </ul>
+              <p class="card-tags">HTML &middot; CSS &middot; Tailwind CSS &middot; Node.js &middot; Express &middot; MongoDB</p>
+            </article>
+
+            <article class="card project-card reveal">
+              <a href="https://todo-application-green-one.vercel.app/" target="_blank" rel="noreferrer" class="project-img-wrap" aria-label="Task-Management Application Live Demo">
+                <img src="assets/project-task-manager.jpg" alt="Task-Management Application preview" class="project-img" loading="lazy" />
+                <span class="project-badge-overlay">Live Preview</span>
+              </a>
+              <header class="card-header">
+                <div>
+                  <h3>Task-Management Application</h3>
+                  <p class="card-subtitle">React Web Application</p>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <a href="https://github.com/rishavranjan07/Todo-using-React" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
+                  <a href="https://todo-application-green-one.vercel.app/" target="_blank" rel="noreferrer" class="badge-link">Live &#8599;</a>
+                </div>
+              </header>
+              <p class="card-body">A responsive task management tracker built with modular React components for efficient day-to-day workflow tracking.</p>
+              <ul class="card-list">
+                <li>Built a responsive task tracker with reusable, clean <strong>React components</strong>.</li>
+                <li>Leveraged <strong>React state</strong> and <strong>LocalStorage</strong> to persist user tasks seamlessly across browser sessions.</li>
+              </ul>
+              <p class="card-tags">React &middot; Tailwind CSS &middot; JavaScript &middot; Node.js &middot; LocalStorage</p>
+            </article>
+
+            <article class="card project-card reveal">
+              <a href="https://github.com/rishavranjan07/Edunet-Foundation-internship-in-AIML" target="_blank" rel="noreferrer" class="project-img-wrap" aria-label="Water Quality Prediction System GitHub Repository">
+                <img src="assets/project-water-quality.jpg" alt="Water Quality Prediction System preview" class="project-img" loading="lazy" />
+                <span class="project-badge-overlay">ML Dashboard</span>
+              </a>
               <header class="card-header">
                 <div>
                   <h3>Water Quality Prediction System</h3>
                   <p class="card-subtitle">Machine Learning Project</p>
                 </div>
-                <a href="https://github.com/rishavranjan07" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
+                <a href="https://github.com/rishavranjan07/Edunet-Foundation-internship-in-AIML" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
               </header>
               <p class="card-body">Developed a machine learning pipeline to predict water potability based on chemical indicators, comparing multiple algorithms for best performance.</p>
               <ul class="card-list">
@@ -311,13 +407,18 @@
               </ul>
               <p class="card-tags">Python &middot; Machine Learning</p>
             </article>
-            <article class="card reveal">
+
+            <article class="card project-card reveal">
+              <a href="https://github.com/rishavranjan07/Restraunt-website" target="_blank" rel="noreferrer" class="project-img-wrap" aria-label="Restaurant Website GitHub Repository">
+                <img src="assets/project-restaurant.jpg" alt="Restaurant Website preview" class="project-img" loading="lazy" />
+                <span class="project-badge-overlay">Web Design</span>
+              </a>
               <header class="card-header">
                 <div>
                   <h3>Restaurant Website</h3>
                   <p class="card-subtitle">Responsive Web Application</p>
                 </div>
-                <a href="https://github.com/rishavranjan07" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
+                <a href="https://github.com/rishavranjan07/Restraunt-website" target="_blank" rel="noreferrer" class="badge-link">GitHub</a>
               </header>
               <p class="card-body">Designed a responsive, multi-page restaurant website with structured navigation and interactive features for a smooth user experience across devices.</p>
               <ul class="card-list">
@@ -327,7 +428,11 @@
               <p class="card-tags">HTML &middot; CSS &middot; JavaScript</p>
             </article>
 
-            <article class="card reveal">
+            <article class="card project-card reveal">
+              <a href="https://parallax-website-rr.vercel.app/" target="_blank" rel="noreferrer" class="project-img-wrap" aria-label="Parallax Website Live Demo">
+                <img src="assets/project-parallax.jpg" alt="Parallax Website preview" class="project-img" loading="lazy" />
+                <span class="project-badge-overlay">Live Preview</span>
+              </a>
               <header class="card-header">
                 <div>
                   <h3>Parallax Website</h3>
@@ -380,7 +485,43 @@
           <div class="cert-grid reveal-stagger">
 
             <div class="cert-item reveal">
-              <span class="cert-title">Linux and SQL</span>
+              <div class="cert-header">
+                <span class="cert-title">Web Development Fundamentals</span>
+                <span class="badge">Aug 2026</span>
+              </div>
+              <a class="cert-link" href="https://drive.google.com/file/d/1O-W1ZGjOt0HczY9T26CL6t4e5ko695Cu/view" target="_blank" rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Certificate
+              </a>
+            </div>
+
+            <div class="cert-item reveal">
+              <div class="cert-header">
+                <span class="cert-title">Frontend Developer (React)</span>
+                <span class="badge">Jul 2026</span>
+              </div>
+              <a class="cert-link" href="https://drive.google.com/file/d/1lL9_QtrAg2w0tCcrkGjV8U1f3uSaFZ3n/view" target="_blank" rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Certificate
+              </a>
+            </div>
+
+            <div class="cert-item reveal">
+              <div class="cert-header">
+                <span class="cert-title">IBM AI Fundamentals</span>
+                <span class="badge">Jul 2025</span>
+              </div>
+              <a class="cert-link" href="https://drive.google.com/file/d/13Nr-6EAxyrfR7dqtnqBUkQSOCMGI4VOx/view?usp=drivesdk" target="_blank" rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Certificate
+              </a>
+            </div>
+
+            <div class="cert-item reveal">
+              <div class="cert-header">
+                <span class="cert-title">Linux and SQL</span>
+                <span class="badge">May 2025</span>
+              </div>
               <a class="cert-link" href="https://drive.google.com/file/d/1vHgAhOMpof3ugeljGh1bkme1Qq4aZtpr/view?usp=drivesdk" target="_blank" rel="noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 View Certificate
@@ -388,7 +529,10 @@
             </div>
 
             <div class="cert-item reveal">
-              <span class="cert-title">Machine Learning</span>
+              <div class="cert-header">
+                <span class="cert-title">Machine Learning</span>
+                <span class="badge">May 2025</span>
+              </div>
               <a class="cert-link" href="https://drive.google.com/file/d/1AdOIOsdJsVaenDT18Po51cQ6izoyDxMN/view?usp=drivesdk" target="_blank" rel="noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 View Certificate
@@ -396,15 +540,10 @@
             </div>
 
             <div class="cert-item reveal">
-              <span class="cert-title">Data Science</span>
-              <a class="cert-link" href="https://drive.google.com/file/d/13UtcGsfDmV23lG-2AFsG4hHJcDXhma9y/view?usp=drivesdk" target="_blank" rel="noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                View Certificate
-              </a>
-            </div>
-
-            <div class="cert-item reveal">
-              <span class="cert-title">Deloitte Cyber Job Simulation</span>
+              <div class="cert-header">
+                <span class="cert-title">Deloitte Cyber Job Simulation</span>
+                <span class="badge">May 2025</span>
+              </div>
               <a class="cert-link" href="https://drive.google.com/file/d/13MHBwO858lprAqrWxo5Hh9QFj9PCXUEh/view?usp=drivesdk" target="_blank" rel="noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 View Certificate
@@ -412,8 +551,11 @@
             </div>
 
             <div class="cert-item reveal">
-              <span class="cert-title">IBM AI Fundamentals</span>
-              <a class="cert-link" href="https://drive.google.com/file/d/13Nr-6EAxyrfR7dqtnqBUkQSOCMGI4VOx/view?usp=drivesdk" target="_blank" rel="noreferrer">
+              <div class="cert-header">
+                <span class="cert-title">Data Science</span>
+                <span class="badge">May 2025</span>
+              </div>
+              <a class="cert-link" href="https://drive.google.com/file/d/13UtcGsfDmV23lG-2AFsG4hHJcDXhma9y/view?usp=drivesdk" target="_blank" rel="noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 View Certificate
               </a>
@@ -487,10 +629,16 @@
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-content">
-        <a href="#home" class="back-to-top" aria-label="Back to top">&#8679;</a>
         <p class="footer-copy">&copy; <span id="year"></span> Rishav Ranjan. All Rights Reserved.</p>
       </div>
     </footer>
+
+    <!-- FLOATING SCROLL TO TOP BUTTON -->
+    <button type="button" class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+      </svg>
+    </button>
 
     <script src="script.js"></script>
   </body>
